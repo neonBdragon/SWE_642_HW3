@@ -1,4 +1,4 @@
-package swe642;
+package logic;
 
 /**
  * StudentBean has attributes that matches most of the Student Survey Form fields, except the Data field. 

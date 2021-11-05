@@ -1,3 +1,4 @@
+package process;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,10 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import swe642.DataBean;
-import swe642.DataProcessor;
-import swe642.StudentBean;
-import swe642.StudentDAO;
+import logic.DataBean;
+import logic.DataProcessor;
+import logic.StudentBean;
+import logic.StudentDAO;
 
 @WebServlet(name = "ProcessServlet", urlPatterns = { "/ProcessServlet" })
 /**

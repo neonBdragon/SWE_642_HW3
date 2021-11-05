@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page session="true"%>
-<%@ page import="swe642.DataBean"%>
+<%@ page import="logic.DataBean"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
 <!DOCTYPE html>

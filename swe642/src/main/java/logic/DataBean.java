@@ -1,4 +1,4 @@
-package swe642;
+package logic;
 
 /**
  * 
