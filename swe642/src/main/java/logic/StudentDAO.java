@@ -24,16 +24,10 @@ public class StudentDAO {
 	private static PreparedStatement myStmt;
 	private static PreparedStatement myStmt2;
 	
-	private final static Logger logger = Logger.getLogger("dbLogger");
-	private static FileHandler fh;
+	private final static Logger logger = Logger.getLogger(StudentDAO.class.getName());
 
 	public static List<String> saveData(List<String> data) {
 		try {
-			fh = new FileHandler("/logs/dbLogFile.log");
-			logger.addHandler(fh);
-			SimpleFormatter format = new SimpleFormatter();
-			fh.setFormatter(format);
-
 			Class.forName(DRIVER_NAME); // Test Java Oracle library
 
 			logger.info("Connecting to Oracle...");
@@ -83,11 +77,6 @@ public class StudentDAO {
 
 	public static List<List<String>> getData(String student_id) {
 		try {
-			fh = new FileHandler("/logs/dbLogFile.log");
-			logger.addHandler(fh);
-			SimpleFormatter format = new SimpleFormatter();
-			fh.setFormatter(format);
-
 			Class.forName(DRIVER_NAME); // Test Java Oracle library
 
 			logger.info("Connecting to Oracle...");
