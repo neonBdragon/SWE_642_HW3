@@ -81,7 +81,7 @@ public class StudentDAO {
 		return null;
 	}
 
-	public static List<String> getData(String student_id) {
+	public static List<List<String>> getData(String student_id) {
 		try {
 			fh = new FileHandler("/logs/dbLogFile.log");
 			logger.addHandler(fh);
@@ -97,10 +97,12 @@ public class StudentDAO {
 			logger.info("Connected!");
 			
 			myStmt = conn.prepareStatement(queryGET);
+			myStmt2 = conn.prepareStatement(queryGETALL);
 			
 			myStmt.setInt(1, Integer.parseInt(student_id));	//student_id
 			
 			ResultSet myRes = myStmt.executeQuery();
+			ResultSet myRes2 = myStmt2.executeQuery();
 			
 			List<String> parts = new ArrayList<String>();
 			
@@ -111,12 +113,23 @@ public class StudentDAO {
 					else parts.add(myRes.getString(i));
 				}
 			}
+			
+			List<List<String>> masterList = new ArrayList<List<String>>();
+			List<String> idparts = new ArrayList<String>();
+			
+			while(myRes2.next())
+			{
+				idparts.add(String.valueOf(myRes2.getInt(1)));
+			}
+			
+			masterList.add(parts);			//index 0 = studentsParts
+			masterList.add(idparts);		//index 1 = idParts
 
 			conn.close();
 
 			logger.info("Disconnected from Oracle!");
 			
-			return parts;
+			return masterList;
 			
 		} catch (Exception e) {
 			logger.severe("ORACLE error detected: " + e);

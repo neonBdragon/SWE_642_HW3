@@ -1,3 +1,4 @@
+<%@page import="logic.StudentBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page session="true"%>
@@ -5,11 +6,12 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.io.PrintWriter" %>
+<%@ page import="java.util.Arrays" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Winner Acknowledgement</title>
 </head>
 <body>
 
@@ -18,6 +20,7 @@
 	data = (DataBean) session.getAttribute("databean");
 
 	List<String> idParts = new ArrayList<String>();
+	idParts = (List<String>) session.getAttribute("studentids");
 	%>
 
 	<h1>Thank you for completing the survey!</h1>
