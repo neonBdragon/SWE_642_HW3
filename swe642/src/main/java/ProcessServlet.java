@@ -59,31 +59,43 @@ public class ProcessServlet extends HttpServlet {
 
 		parts.add(request.getParameter("user_choice"));
 		masterList = StudentDAO.getData(request.getParameter("user_choice"));
-		studentParts = masterList.get(0);
-		
-		if(!studentParts.isEmpty())
+				
+		if(masterList.isEmpty())
 		{
-			logger.info("Found student record!");
-			StudentBean beanStudent = new StudentBean();
-			beanStudent.setStudentID(studentParts.get(0));
-			beanStudent.setName(studentParts.get(1));
-			beanStudent.setAddress(studentParts.get(2));
-			beanStudent.setCity(studentParts.get(3));
-			beanStudent.setState(studentParts.get(4));
-			beanStudent.setZipcode(studentParts.get(5));
-			beanStudent.setTelephone(studentParts.get(6));
-			beanStudent.setEmail(studentParts.get(7));
-			beanStudent.setURL(studentParts.get(8));
-			beanStudent.setDOS(studentParts.get(9));
-			session.setAttribute("studentbean", beanStudent);
-			
-			request.getRequestDispatcher("Student.jsp").forward(request, response);
+			logger.severe("Error: MasterList is empty, DB exception returned!");
+			studentParts = new ArrayList<String>();
+			idParts = new ArrayList<String>();
+			logger.info("No student record returned due to error!");
+			logger.info("No student IDs returned due to error!");
+			request.getRequestDispatcher("Error.jsp").forward(request, response);
 		}
 		else
 		{
-			logger.info("No student record!");
-			request.getRequestDispatcher("NoSuchStudent.jsp").forward(request, response);
-		}
+			studentParts = masterList.get(0);
+			if(!studentParts.isEmpty())
+			{
+				logger.info("Found student record!");
+				StudentBean beanStudent = new StudentBean();
+				beanStudent.setStudentID(studentParts.get(0));
+				beanStudent.setName(studentParts.get(1));
+				beanStudent.setAddress(studentParts.get(2));
+				beanStudent.setCity(studentParts.get(3));
+				beanStudent.setState(studentParts.get(4));
+				beanStudent.setZipcode(studentParts.get(5));
+				beanStudent.setTelephone(studentParts.get(6));
+				beanStudent.setEmail(studentParts.get(7));
+				beanStudent.setURL(studentParts.get(8));
+				beanStudent.setDOS(studentParts.get(9));
+				session.setAttribute("studentbean", beanStudent);
+				
+				request.getRequestDispatcher("Student.jsp").forward(request, response);
+			}
+			else
+			{
+				logger.info("No student record!");
+				request.getRequestDispatcher("NoSuchStudent.jsp").forward(request, response);
+			}
+		}		
 		
 	}
 
@@ -112,21 +124,35 @@ public class ProcessServlet extends HttpServlet {
 		parts.add(request.getParameter("date_of_suvery"));
 
 		masterList = StudentDAO.getData(request.getParameter("student_id"));
-		studentParts = masterList.get(0);
-		if(!studentParts.isEmpty())
+		
+		if(masterList.isEmpty())
 		{
-			logger.info("Student record already exist!");
-			idParts = masterList.get(1);
-			if(idParts.isEmpty()) logger.severe("ID List is empty!");
-			session.setAttribute("studentids", idParts);
+			logger.severe("Error: MasterList is empty, DB exception returned!");
+			studentParts = new ArrayList<String>();
+			idParts = new ArrayList<String>();
+			logger.info("No student record returned due to error!");
+			logger.info("No student IDs returned due to error!");
+			request.getRequestDispatcher("Error.jsp").forward(request, response);
 		}
 		else
 		{
-			logger.info("No student record!");
-			idParts = StudentDAO.saveData(parts);
-			session.setAttribute("studentids", idParts);
+			studentParts = masterList.get(0);
+			if(!studentParts.isEmpty())
+			{
+				logger.info("Student record already exist!");
+				idParts = masterList.get(1);
+				if(idParts.isEmpty()) logger.severe("ID List is empty!");
+				session.setAttribute("studentids", idParts);
+			}
+			else
+			{
+				logger.info("No student record!");
+				idParts = StudentDAO.saveData(parts);
+				session.setAttribute("studentids", idParts);
+			}
 		}
-
+		
+		
 		logger.info("Computing mean and std...");
 		mean = DataProcessor.calcMean(request.getParameter("data"));
 		stdDev = DataProcessor.calStdDev(request.getParameter("data"), mean);

@@ -17,6 +17,7 @@
 	data = (DataBean) session.getAttribute("databean");
 
 	List<String> idParts = new ArrayList<String>();
+	idParts = (List<String>) session.getAttribute("studentids");
 	%>
 
 	<h1>Thank you for completing the survey!</h1>
@@ -24,6 +25,10 @@
 		Based on the survey data you submitted, you did not win our secret raffle...<br>
 		Your mean score was: <strong><%=data.getMean()%></strong> and standard deviation score was: <strong><%=data.getSTDDev()%></strong>
 	</p>
+
+	<br>
+
+	<h3>Student ID List</h3>
 
 	<ul>
 		<%

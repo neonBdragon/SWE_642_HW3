@@ -30,15 +30,15 @@
 		Your mean score was: <strong><%=data.getMean()%></strong> and standard deviation score was: <strong><%=data.getSTDDev()%></strong><br>
 		Earning you 2 free movie tickets!!!
 	</p>
+	
+	<br>
 
+	<h3>Student ID List</h3>
+	
 	<ul>
 		<%
 		for (String id : idParts) {
-			out.println("<li>");
-			out.print("<a href='ProcessServlet?user_choice=" + id + "'>");
-			out.print(id);
-			out.print("</a>");
-			out.println("</li>");
+			out.println("<li><a href='ProcessServlet?user_choice=" + id + "'>" + id + "</a></li>");
 		}
 		%>
 	</ul>

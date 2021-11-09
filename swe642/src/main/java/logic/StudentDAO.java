@@ -27,6 +27,9 @@ public class StudentDAO {
 	private final static Logger logger = Logger.getLogger(StudentDAO.class.getName());
 
 	public static List<String> saveData(List<String> data) {
+		
+		List<String> parts = new ArrayList<String>();
+		
 		try {
 			Class.forName(DRIVER_NAME); // Test Java Oracle library
 
@@ -56,7 +59,7 @@ public class StudentDAO {
 			
 			ResultSet myRes = myStmt2.executeQuery();
 			
-			List<String> parts = new ArrayList<String>();
+			
 			while(myRes.next())
 			{
 				parts.add(String.valueOf(myRes.getInt(1)));
@@ -72,10 +75,13 @@ public class StudentDAO {
 			logger.severe("ORACLE error detected: " + e);
 		}
 
-		return null;
+		return parts;
 	}
 
 	public static List<List<String>> getData(String student_id) {
+		
+		List<List<String>> masterList = new ArrayList<List<String>>();
+		
 		try {
 			Class.forName(DRIVER_NAME); // Test Java Oracle library
 
@@ -103,7 +109,6 @@ public class StudentDAO {
 				}
 			}
 			
-			List<List<String>> masterList = new ArrayList<List<String>>();
 			List<String> idparts = new ArrayList<String>();
 			
 			while(myRes2.next())
@@ -123,6 +128,6 @@ public class StudentDAO {
 		} catch (Exception e) {
 			logger.severe("ORACLE error detected: " + e);
 		}
-		return null;
+		return masterList;
 	}
 }
