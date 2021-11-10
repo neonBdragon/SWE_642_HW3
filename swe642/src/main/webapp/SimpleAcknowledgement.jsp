@@ -1,3 +1,8 @@
+<!--
+    Created by: Brandon Mack
+    JSP for Simple Acknowledge of someone who submitted the form
+-->
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page session="true"%>

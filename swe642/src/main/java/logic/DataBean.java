@@ -1,5 +1,10 @@
 package logic;
 
+/*
+Modified by: Brandon Mack
+Created by: Qingyan Dai
+*/
+
 /**
  * 
  * 

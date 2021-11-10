@@ -11,6 +11,6 @@
 	
 	<br>
 	
-	<h3><a href="/survey_hw3.html">Click here to return to Survey Page</a></h3>
+	<h3><a href="/swe642/survey_hw3.html">Click here to return to Survey Page</a></h3>
 </body>
 </html>

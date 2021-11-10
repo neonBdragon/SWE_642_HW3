@@ -15,6 +15,12 @@ import logic.DataProcessor;
 import logic.StudentBean;
 import logic.StudentDAO;
 
+/*
+Modified by: Qingyang Dai
+Created by: Brandon Mack
+Servlet that handles all the logic processing of the web application
+*/
+
 @WebServlet(name = "ProcessServlet", urlPatterns = { "/ProcessServlet" })
 /**
  * Servlet implementation class ProcessServlet

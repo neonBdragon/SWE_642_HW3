@@ -1,3 +1,9 @@
+<!--
+    Created by: Qingyang Dai
+    Modified by: Brandon Mack
+    JSP No Such Student was found within the DB
+-->
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>

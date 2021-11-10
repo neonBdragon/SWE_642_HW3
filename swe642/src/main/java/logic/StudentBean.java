@@ -1,5 +1,10 @@
 package logic;
 
+/*
+Modified by: Brandon Mack
+Created by: Qingyan Dai
+*/
+
 /**
  * StudentBean has attributes that matches most of the Student Survey Form fields, except the Data field. 
  */
